@@ -4,12 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
     initSnowfall();
     initMusicPlayer();
     initChristmasLights();
+    addPoemInteractivity();
 });
 
 // Snowfall Animation
 function initSnowfall() {
     const snowflakesContainer = document.querySelector('.snowflakes');
-    const snowflakeCount = 50;
+    
+    // Adjust snowflake count based on screen size for better performance
+    const snowflakeCount = window.innerWidth < 768 ? 25 : 40;
 
     for (let i = 0; i < snowflakeCount; i++) {
         createSnowflake(snowflakesContainer);
@@ -167,7 +170,7 @@ function showMessage(message) {
         messageDiv.style.transition = 'opacity 0.5s';
         messageDiv.style.opacity = '0';
         setTimeout(() => {
-            document.body.removeChild(messageDiv);
+            messageDiv.remove();
         }, 500);
     }, 3000);
 }
@@ -188,6 +191,3 @@ function addPoemInteractivity() {
         });
     });
 }
-
-// Call poem interactivity after DOM loads
-document.addEventListener('DOMContentLoaded', addPoemInteractivity);
